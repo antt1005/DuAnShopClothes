@@ -43,7 +43,7 @@ public class Color {
     @Column(name = "dateCreate")
     private Date dateCreate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idColor")
-    List<ProductDetail> productDetails;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idColor")
+//    List<ProductDetail> productDetails;
 
 }
