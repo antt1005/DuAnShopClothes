@@ -14,5 +14,7 @@ public interface ColorServices {
 
     public Color add(Color nhaSanXuat);
 
+    public Color detail(Long id);
+
 
 }

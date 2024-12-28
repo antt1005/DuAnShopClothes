@@ -32,4 +32,9 @@ public class ColorService implements ColorServices {
         nhaSanXuat.setColorName(nhaSanXuat.getColorName());
         return colorRepo.save(nhaSanXuat);
     }
+
+    @Override
+    public Color detail(Long id) {
+        return colorRepo.findById(id).orElse(null);
+    }
 }
