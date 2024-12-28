@@ -53,4 +53,10 @@ public class ColorController {
         return ResponseEntity.ok(colorService.add(Color));
     }
 
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<?> detail(@PathVariable Long id) {
+        return ResponseEntity.ok(colorService.detail(id));
+    }
+
+
 }
