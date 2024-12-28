@@ -73,4 +73,23 @@ public class ColorController {
         }
 
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Color MS) {
+        Color c = colorService.detail(id);
+
+        if (c != null) {
+            MS.setId(id);
+            MS.setCode(c.getCode());
+            MS.setDateCreate(c.getDateCreate()); // Sử dụng ngày tạo của bản gốc
+            MS.setDateUpdate(new Date());
+
+            // Thực hiện cập nhật
+            return ResponseEntity.ok(colorService.add(MS));
+        } else {
+            // Trả về một phản hồi khi không tìm thấy nhà sản xuất
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
