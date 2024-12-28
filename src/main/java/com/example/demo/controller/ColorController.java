@@ -15,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.Random;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/coler")
@@ -40,6 +43,14 @@ public class ColorController {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Color> producerPage = colorRepo.getAllByStatus(Status.DANG_HOAT_DONG, pageable);
         return ResponseEntity.ok(producerPage.getContent());
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<?> add(@RequestBody Color Color) {
+        String ma = "MS" + new Random().nextInt(100000);
+        Color.setCode(ma);
+        Color.setDateCreate(new Date());
+        return ResponseEntity.ok(colorService.add(Color));
     }
 
 }
