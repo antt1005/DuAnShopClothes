@@ -54,9 +54,23 @@ public class ColorController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<?> detail(@PathVariable Long id) {
-        return ResponseEntity.ok(colorService.detail(id));
+    public ResponseEntity<?> delete(@PathVariable Long id, @RequestBody(required = false) Color cl) {
+        try {
+            Color existingProducer = colorRepo.findById(id).orElse(null);
+            if (existingProducer != null) {
+                existingProducer.setDateCreate(existingProducer.getDateCreate());
+                existingProducer.setDateUpdate(new Date());
+                existingProducer.setStatus(Status.NGUNG_HOAT_DONG);
+                return ResponseEntity.ok(colorService.xoa(id));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+
+            return ResponseEntity.ok(colorService.detail(id));
+        }
+
     }
-
-
 }
