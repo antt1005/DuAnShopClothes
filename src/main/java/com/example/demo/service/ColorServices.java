@@ -12,5 +12,7 @@ public interface ColorServices {
 
     public Page<Color> pageColor(Pageable pageable);
 
+    public Color add(Color nhaSanXuat);
+
 
 }

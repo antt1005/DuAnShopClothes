@@ -26,4 +26,10 @@ public class ColorService implements ColorServices {
     public Page<Color> pageColor(Pageable pageable) {
         return colorRepo.findAll(pageable);
     }
+
+    @Override
+    public Color add(Color nhaSanXuat) {
+        nhaSanXuat.setColorName(nhaSanXuat.getColorName());
+        return colorRepo.save(nhaSanXuat);
+    }
 }
